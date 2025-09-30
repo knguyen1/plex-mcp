@@ -557,6 +557,53 @@ def mock_library_sections():
 
 
 @pytest.fixture
+def mock_photos_section():
+    """Create a mock photos library section."""
+    section = MagicMock()
+    section.title = "Photos"
+    section.TYPE = "photo"
+    section.key = "4"
+    section.refreshing = False
+    section.agent = "com.plexapp.agents.localmedia"
+    section.scanner = "Plex Photo Scanner"
+    section.language = "en"
+    section.location = "/photos"
+    return section
+
+
+@pytest.fixture
+def mock_plex_account():
+    """Create a mock Plex account."""
+    account = MagicMock()
+    account.username = "testuser"
+    account.email = "test@example.com"
+    account.title = "Test User"
+    return account
+
+
+@pytest.fixture
+def mock_movies():
+    """Create a list of mock movies."""
+    movies = []
+    for i in range(3):
+        movie = MagicMock()
+        movie.title = f"Movie {i}"
+        movie.ratingKey = f"movie{i}"
+        movie.summary = f"Movie summary {i}"
+        movie.thumb = f"thumb{i}"
+        movie.art = f"art{i}"
+        movie.year = 2020 + i
+        movie.rating = 8.0 + (i * 0.5)
+        movie.duration = 7200000 + (i * 600000)
+        movie.originallyAvailableAt = f"2020-{i + 1:02d}-01"
+        movie.addedAt = f"2024-01-{i + 1:02d}"
+        movie.updatedAt = f"2024-01-{i + 1:02d}"
+        movie.librarySectionTitle = "Movies"
+        movies.append(movie)
+    return movies
+
+
+@pytest.fixture
 def mock_library_section():
     """Create a single mock library section."""
     section = MagicMock()

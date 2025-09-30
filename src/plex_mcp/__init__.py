@@ -30,12 +30,15 @@ from fastmcp import FastMCP
 
 from plex_mcp.client.plex_client import PlexClient
 from plex_mcp.sections import (
+    AdvancedSearchSection,
     ClientControlSection,
     CollectionsSection,
     MoviesSection,
     MusicSection,
+    PhotoLibrarySection,
     SettingsSection,
     TVShowsSection,
+    UserManagementSection,
 )
 
 try:
@@ -111,12 +114,15 @@ def main(
     mcp = FastMCP("Plex MCP Server")
 
     # Register all section tools
+    AdvancedSearchSection(mcp, plex_client)
     ClientControlSection(mcp, plex_client)
     CollectionsSection(mcp, plex_client)
     MusicSection(mcp, plex_client)
     MoviesSection(mcp, plex_client)
+    PhotoLibrarySection(mcp, plex_client)
     SettingsSection(mcp, plex_client)
     TVShowsSection(mcp, plex_client)
+    UserManagementSection(mcp, plex_client)
 
     # Prepare run arguments
     run_kwargs = {

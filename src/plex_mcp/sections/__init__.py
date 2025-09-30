@@ -20,18 +20,24 @@
 
 """Plex MCP Server Sections."""
 
+from plex_mcp.sections.advanced_search import AdvancedSearchSection
 from plex_mcp.sections.client_control import ClientControlSection
 from plex_mcp.sections.collections import CollectionsSection
 from plex_mcp.sections.movies import MoviesSection
 from plex_mcp.sections.music import MusicSection
+from plex_mcp.sections.photo_library import PhotoLibrarySection
 from plex_mcp.sections.settings import SettingsSection
 from plex_mcp.sections.tv_shows import TVShowsSection
+from plex_mcp.sections.user_management import UserManagementSection
 
 __all__ = [
+    "AdvancedSearchSection",
     "ClientControlSection",
     "CollectionsSection",
     "MoviesSection",
     "MusicSection",
+    "PhotoLibrarySection",
     "SettingsSection",
     "TVShowsSection",
+    "UserManagementSection",
 ]
