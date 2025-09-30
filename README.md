@@ -2,6 +2,29 @@
 
 A Model Context Protocol (MCP) server that enables AI assistants to interact with your Plex Media Server! 🚀
 
+### TL;DR
+
+To use this server with an MCP client (like Cursor), add this configuration to your MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "plex-mcp": {
+      "command": "uvx",
+      "args": [
+        "plex-mcp",
+        "--baseurl",
+        "<PLEX_BASEURL>",
+        "--token",
+        "<PLEX_TOKEN>"
+      ]
+    }
+  }
+}
+```
+
+Replace `<PLEX_BASEURL>` / `<PLEX_TOKEN>` with your actual Plex server URL and authentication token.
+
 ## ✨ Features
 
 ### 🎥 Movies
@@ -33,11 +56,11 @@ A Model Context Protocol (MCP) server that enables AI assistants to interact wit
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/plex-mcp.git
+git clone https://github.com/knguyen1/plex-mcp.git
 cd plex-mcp
 
 # Install dependencies
-pip install -e .
+uv venv && uv sync
 ```
 
 ### Configuration
@@ -57,32 +80,8 @@ export PLEX_TOKEN="your-plex-token-here"      # Your Plex token
 ### Running the Server
 
 ```bash
-plex-mcp
+uv run plex-mcp
 ```
-
-### MCP Server Configuration
-
-To use this server with an MCP client (like Cursor), add this configuration to your MCP settings:
-
-```json
-{
-  "mcpServers": {
-    "plex-mcp": {
-      "command": "uv",
-      "args": [
-        "run",
-        "plex-mcp",
-        "--baseurl",
-        "<PLEX_BASEURL>",
-        "--token",
-        "<PLEX_TOKEN>"
-      ]
-    }
-  }
-}
-```
-
-Replace `<PLEX_BASEURL>` / `<PLEX_TOKEN>` with your actual Plex server URL and authentication token.
 
 ## 🎯 Sample Use Cases
 
@@ -148,7 +147,7 @@ Replace `<PLEX_BASEURL>` / `<PLEX_TOKEN>` with your actual Plex server URL and a
 
 ```bash
 # Install development dependencies
-pip install -e ".[dev]"
+uv venv && uv sync
 
 # Run linting
 uv run ruff check --fix && uv run ruff format
