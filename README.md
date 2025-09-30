@@ -45,6 +45,28 @@ Replace `<PLEX_BASEURL>` / `<PLEX_TOKEN>` with your actual Plex server URL and a
 - **Get detailed episode information**
 - **Find recently added shows**
 
+### 🎮 Client Control
+- **Control Plex clients** remotely (play, pause, stop, seek)
+- **Navigate client interfaces** (up, down, left, right, select, back)
+- **Set volume levels** on connected clients
+- **Get playback state** information
+- **Play media** on specific clients
+
+### 📚 Collections
+- **Create and manage collections** of movies, shows, or music
+- **Add/remove items** from collections
+- **Search collections** by title or criteria
+- **Update collection metadata** (title, summary)
+- **Delete collections** when no longer needed
+
+### ⚙️ Settings & Management
+- **View and modify server settings**
+- **Get library section information**
+- **Scan libraries** for new media
+- **Empty trash** to free up space
+- **Analyze libraries** for metadata
+- **Get detailed server information**
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -106,6 +128,30 @@ uv run plex-mcp
 "What's the latest episode of The Office?"
 ```
 
+### 🎮 Remote Control
+```
+"Play Inception on my living room TV"
+"Pause the current show on my phone"
+"Set volume to 50% on the bedroom client"
+"Navigate up and select on the Apple TV"
+```
+
+### 📚 Collection Management
+```
+"Create a collection called 'Marvel Movies'"
+"Add all Iron Man movies to the Marvel collection"
+"Find collections with 'action' in the title"
+"Update the description of my 'Holiday Movies' collection"
+```
+
+### ⚙️ Server Management
+```
+"Show me all server settings"
+"Scan my Movies library for new content"
+"Empty trash in the Music library"
+"Get detailed information about my Plex server"
+```
+
 ### 🔍 Smart Search
 ```
 "Find movies similar to Inception"
@@ -141,6 +187,35 @@ uv run plex-mcp
 - `search_episodes_by_show` - Show-specific episodes
 - `get_recently_added_shows` - Latest additions
 
+### Client Control 🎮
+- `list_clients` - List all connected Plex clients
+- `get_client_info` - Get detailed client information
+- `play_media` - Play media on a specific client
+- `control_playback` - Control playback (play, pause, stop, seek)
+- `set_volume` - Set volume on a client
+- `navigate_client` - Navigate client interface
+- `get_playback_state` - Get current playback state
+
+### Collections 📚
+- `list_collections` - List all collections in a library
+- `get_collection_info` - Get detailed collection information
+- `create_collection` - Create a new collection
+- `add_to_collection` - Add items to a collection
+- `remove_from_collection` - Remove items from a collection
+- `update_collection` - Update collection metadata
+- `delete_collection` - Delete a collection
+- `search_collections` - Search collections by title
+
+### Settings & Management ⚙️
+- `get_server_settings` - Get all server settings
+- `get_setting` - Get a specific server setting
+- `set_setting` - Set a server setting value
+- `get_library_sections` - Get all library sections
+- `scan_library` - Scan a library for new media
+- `empty_trash` - Empty trash for a library
+- `analyze_library` - Analyze library for metadata
+- `get_server_info` - Get detailed server information
+
 ## 🔧 Development
 
 ### Setup Development Environment
@@ -164,7 +239,10 @@ src/plex_mcp/
 ├── sections/         # Media type handlers
 │   ├── movies.py     # Movie operations
 │   ├── music.py      # Music operations
-│   └── tv_shows.py   # TV show operations
+│   ├── tv_shows.py   # TV show operations
+│   ├── client_control.py  # Client control operations
+│   ├── collections.py     # Collection management
+│   └── settings.py       # Server settings & management
 └── __init__.py       # Main server entry point
 ```
 
