@@ -20,8 +20,18 @@
 
 """Plex MCP Server Sections."""
 
-from .movies import MoviesSection
-from .music import MusicSection
-from .tv_shows import TVShowsSection
+from plex_mcp.sections.client_control import ClientControlSection
+from plex_mcp.sections.collections import CollectionsSection
+from plex_mcp.sections.movies import MoviesSection
+from plex_mcp.sections.music import MusicSection
+from plex_mcp.sections.settings import SettingsSection
+from plex_mcp.sections.tv_shows import TVShowsSection
 
-__all__ = ["MoviesSection", "MusicSection", "TVShowsSection"]
+__all__ = [
+    "ClientControlSection",
+    "CollectionsSection",
+    "MoviesSection",
+    "MusicSection",
+    "SettingsSection",
+    "TVShowsSection",
+]

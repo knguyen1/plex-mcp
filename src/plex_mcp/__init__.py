@@ -29,7 +29,14 @@ import click
 from fastmcp import FastMCP
 
 from plex_mcp.client.plex_client import PlexClient
-from plex_mcp.sections import MoviesSection, MusicSection, TVShowsSection
+from plex_mcp.sections import (
+    ClientControlSection,
+    CollectionsSection,
+    MoviesSection,
+    MusicSection,
+    SettingsSection,
+    TVShowsSection,
+)
 
 try:
     __version__ = version("plex-mcp")
@@ -104,8 +111,11 @@ def main(
     mcp = FastMCP("Plex MCP Server")
 
     # Register all section tools
+    ClientControlSection(mcp, plex_client)
+    CollectionsSection(mcp, plex_client)
     MusicSection(mcp, plex_client)
     MoviesSection(mcp, plex_client)
+    SettingsSection(mcp, plex_client)
     TVShowsSection(mcp, plex_client)
 
     # Prepare run arguments

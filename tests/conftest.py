@@ -312,3 +312,288 @@ def parametrized_ratings():
 def parametrized_limits():
     """Parametrized limits for testing."""
     return [1, 5, 10, 20, 50]
+
+
+# Client Control fixtures
+@pytest.fixture
+def mock_client():
+    """Create a mock Plex client."""
+    client = MagicMock()
+    client.title = "Test Client"
+    client.platform = "iOS"
+    client.product = "Plex for iOS"
+    client.deviceClass = "phone"
+    client.machineIdentifier = "test-client-id"
+    client.protocolCapabilities = ["navigation", "playback"]
+    client.address = "192.168.1.100"
+    client.port = 32400
+    client.version = "1.0.0"
+    client.protocolVersion = "1.0"
+    return client
+
+
+@pytest.fixture
+def mock_clients(mock_client):
+    """Create a list of mock Plex clients."""
+    client1 = MagicMock()
+    client1.title = "Test Client 1"
+    client1.platform = "iOS"
+    client1.product = "Plex for iOS"
+    client1.deviceClass = "phone"
+    client1.machineIdentifier = "client1-id"
+    client1.protocolCapabilities = ["navigation", "playback"]
+    client1.address = "192.168.1.100"
+    client1.port = 32400
+
+    client2 = MagicMock()
+    client2.title = "Test Client 2"
+    client2.platform = "Android"
+    client2.product = "Plex for Android"
+    client2.deviceClass = "phone"
+    client2.machineIdentifier = "client2-id"
+    client2.protocolCapabilities = ["navigation", "playback"]
+    client2.address = "192.168.1.101"
+    client2.port = 32400
+
+    return [client1, client2]
+
+
+@pytest.fixture
+def mock_media():
+    """Create a mock media item."""
+    media = MagicMock()
+    media.title = "Test Media"
+    media.ratingKey = "12345"
+    media.type = "movie"
+    return media
+
+
+@pytest.fixture
+def mock_timeline():
+    """Create a mock timeline object."""
+    timeline = MagicMock()
+    timeline.state = "playing"
+    timeline.time = 30000
+    timeline.duration = 120000
+    timeline.volume = 75
+    timeline.muted = False
+    timeline.repeat = 0
+    timeline.shuffle = 0
+    return timeline
+
+
+# Collections fixtures
+@pytest.fixture
+def mock_collection():
+    """Create a mock collection object."""
+    collection = MagicMock()
+    collection.title = "Action Movies"
+    collection.summary = "Collection of action movies"
+    collection.ratingKey = "12345"
+    collection.childCount = 2
+    collection.thumb = "http://example.com/thumb.jpg"
+    collection.art = "http://example.com/art.jpg"
+    collection.smart = False
+    collection.contentRating = "PG-13"
+    collection.audienceRating = 8.5
+    collection.userRating = 9.0
+    collection.librarySectionID = "1"
+    collection.librarySectionTitle = "Movies"
+    return collection
+
+
+@pytest.fixture
+def mock_collections(mock_collection):
+    """Create a list of mock collections."""
+    collection1 = MagicMock()
+    collection1.title = "Action Movies"
+    collection1.summary = "Collection of action movies"
+    collection1.ratingKey = "12345"
+    collection1.childCount = 2
+    collection1.thumb = "http://example.com/thumb1.jpg"
+    collection1.art = "http://example.com/art1.jpg"
+    collection1.smart = False
+    collection1.contentRating = "PG-13"
+    collection1.audienceRating = 8.5
+    collection1.userRating = 9.0
+
+    collection2 = MagicMock()
+    collection2.title = "Comedy Movies"
+    collection2.summary = "Collection of comedy movies"
+    collection2.ratingKey = "67890"
+    collection2.childCount = 3
+    collection2.thumb = "http://example.com/thumb2.jpg"
+    collection2.art = "http://example.com/art2.jpg"
+    collection2.smart = False
+    collection2.contentRating = "PG"
+    collection2.audienceRating = 7.5
+    collection2.userRating = 8.0
+
+    return [collection1, collection2]
+
+
+@pytest.fixture
+def mock_collection_items():
+    """Create a list of mock collection items."""
+    item1 = MagicMock()
+    item1.title = "Movie 1"
+    item1.year = 2023
+    item1.ratingKey = "movie1"
+    item1.type = "movie"
+    item1.thumb = "http://example.com/movie1.jpg"
+
+    item2 = MagicMock()
+    item2.title = "Movie 2"
+    item2.year = 2022
+    item2.ratingKey = "movie2"
+    item2.type = "movie"
+    item2.thumb = "http://example.com/movie2.jpg"
+
+    return [item1, item2]
+
+
+@pytest.fixture
+def mock_media_items():
+    """Create a list of mock media items for collections."""
+    item1 = MagicMock()
+    item1.title = "Test Movie 1"
+    item1.ratingKey = "12345"
+
+    item2 = MagicMock()
+    item2.title = "Test Movie 2"
+    item2.ratingKey = "67890"
+
+    return [item1, item2]
+
+
+@pytest.fixture
+def mock_media_item():
+    """Create a single mock media item."""
+    item = MagicMock()
+    item.title = "Test Movie"
+    item.ratingKey = "12345"
+    return item
+
+
+# Settings fixtures
+@pytest.fixture
+def mock_setting():
+    """Create a mock setting object."""
+    setting = MagicMock()
+    setting.id = "test_setting"
+    setting.label = "Test Setting"
+    setting.summary = "A test setting"
+    setting.value = "test_value"
+    setting.default = "default_value"
+    setting.type = "string"
+    setting.hidden = False
+    setting.advanced = False
+    setting.group = "general"
+    return setting
+
+
+@pytest.fixture
+def mock_settings(mock_setting):
+    """Create a list of mock settings."""
+    setting1 = MagicMock()
+    setting1.id = "setting1"
+    setting1.label = "Setting 1"
+    setting1.summary = "First setting"
+    setting1.value = "value1"
+    setting1.default = "default1"
+    setting1.type = "string"
+    setting1.hidden = False
+    setting1.advanced = False
+    setting1.group = "general"
+
+    setting2 = MagicMock()
+    setting2.id = "setting2"
+    setting2.label = "Setting 2"
+    setting2.summary = "Second setting"
+    setting2.value = "value2"
+    setting2.default = "default2"
+    setting2.type = "boolean"
+    setting2.hidden = False
+    setting2.advanced = True
+    setting2.group = "advanced"
+
+    return [setting1, setting2]
+
+
+@pytest.fixture
+def mock_library_sections():
+    """Create a list of mock library sections."""
+    movies_section = MagicMock()
+    movies_section.title = "Movies"
+    movies_section.TYPE = "movie"
+    movies_section.key = "1"
+    movies_section.refreshing = False
+    movies_section.agent = "com.plexapp.agents.imdb"
+    movies_section.scanner = "Plex Movie Scanner"
+    movies_section.language = "en"
+    movies_section.location = "/movies"
+
+    music_section = MagicMock()
+    music_section.title = "Music"
+    music_section.TYPE = "artist"
+    music_section.key = "2"
+    music_section.refreshing = False
+    music_section.agent = "com.plexapp.agents.lastfm"
+    music_section.scanner = "Plex Music Scanner"
+    music_section.language = "en"
+    music_section.location = "/music"
+
+    tv_section = MagicMock()
+    tv_section.title = "TV Shows"
+    tv_section.TYPE = "show"
+    tv_section.key = "3"
+    tv_section.refreshing = False
+    tv_section.agent = "com.plexapp.agents.thetvdb"
+    tv_section.scanner = "Plex Series Scanner"
+    tv_section.language = "en"
+    tv_section.location = "/tv"
+
+    return [movies_section, music_section, tv_section]
+
+
+@pytest.fixture
+def mock_library_section():
+    """Create a single mock library section."""
+    section = MagicMock()
+    section.title = "Movies"
+    section.TYPE = "movie"
+    section.key = "1"
+    section.refreshing = False
+    section.agent = "com.plexapp.agents.imdb"
+    section.scanner = "Plex Movie Scanner"
+    section.language = "en"
+    section.location = "/movies"
+    return section
+
+
+@pytest.fixture
+def mock_server_info():
+    """Create mock server info data."""
+    return {
+        "friendlyName": "Test Server",
+        "machineIdentifier": "test-machine-id",
+        "version": "1.32.0",
+        "platform": "Linux",
+        "platformVersion": "Ubuntu 20.04",
+        "myPlex": True,
+        "myPlexUsername": "testuser",
+        "myPlexSubscription": True,
+        "allowSync": True,
+        "allowCameraUpload": True,
+        "allowChannelAccess": True,
+        "allowMediaDeletion": True,
+        "allowSharing": True,
+        "multiuser": True,
+        "transcoderActiveVideoSessions": 0,
+        "transcoderVideo": True,
+        "transcoderAudio": True,
+        "transcoderPhoto": True,
+        "transcoderSubtitles": True,
+        "transcoderLyrics": True,
+        "updatedAt": "2023-01-01T00:00:00Z",
+    }
