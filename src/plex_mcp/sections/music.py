@@ -27,6 +27,9 @@ from fastmcp import FastMCP
 from plexapi.exceptions import BadRequest, NotFound
 
 from plex_mcp.client.plex_client import PlexClient
+from plex_mcp.sections.artist_search_strategies import (
+    ArtistSearchContext,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -334,6 +337,9 @@ class MusicSection:
         """
         Search for tracks by a specific artist.
 
+        This method uses the Strategy pattern to handle Unicode character
+        differences like hyphens vs en-dashes, different space types, and case variations.
+
         Parameters
         ----------
         artist : str
@@ -348,28 +354,25 @@ class MusicSection:
         """
         try:
             music_section = self._get_music_section()
-            # Use the proper Plex API filter for artist search
-            tracks = music_section.searchTracks(
-                filters={"artist.title": artist}, limit=limit
+            server = self.plex_client.get_server()
+
+            # Create search context with strategies
+            search_context = ArtistSearchContext(server)
+
+            # Use strategy pattern to search for tracks
+            result = search_context.search_tracks_by_artist(
+                music_section, artist, limit
             )
 
-            results = [
-                {
-                    "title": track.title,
-                    "artist": track.grandparentTitle,
-                    "album": track.parentTitle,
-                    "year": getattr(track, "year", None),
-                    "rating_key": track.ratingKey,
+            if result["success"]:
+                result = self._format_track_results(
+                    artist, result["tracks"], result["matched_artists"]
+                )
+            else:
+                result = {
+                    "success": False,
+                    "error": f"No artists found matching '{artist}'",
                 }
-                for track in tracks
-            ]
-
-            return {
-                "success": True,
-                "artist": artist,
-                "total_results": len(results),
-                "tracks": results,
-            }
 
         except NotFound as e:
             logger.exception("Music library not found: %s")
@@ -377,6 +380,47 @@ class MusicSection:
         except (BadRequest, ValueError) as e:
             logger.exception("Error searching tracks by artist: %s")
             return {"success": False, "error": f"Error searching tracks: {e}"}
+        else:
+            return result
+
+    def _format_track_results(
+        self, search_artist: str, tracks: list, matched_artists: list
+    ) -> dict[str, Any]:
+        """
+        Format track search results into the expected response format.
+
+        Parameters
+        ----------
+        search_artist : str
+            The original artist name that was searched for
+        tracks : list
+            List of track objects from Plex
+        matched_artists : list
+            List of artist names that matched the search
+
+        Returns
+        -------
+        dict[str, Any]
+            Formatted search results
+        """
+        results = [
+            {
+                "title": track.title,
+                "artist": track.grandparentTitle,
+                "album": track.parentTitle,
+                "year": getattr(track, "year", None),
+                "rating_key": track.ratingKey,
+            }
+            for track in tracks
+        ]
+
+        return {
+            "success": True,
+            "artist": search_artist,
+            "matched_artists": matched_artists,
+            "total_results": len(results),
+            "tracks": results,
+        }
 
     def get_playlist_info(
         self,
@@ -418,7 +462,7 @@ class MusicSection:
                 for track in tracks
             ]
 
-            return {
+            result = {
                 "success": True,
                 "playlist": {
                     "title": playlist.title,
@@ -428,10 +472,11 @@ class MusicSection:
                     "tracks": track_list,
                 },
             }
-
         except (NotFound, BadRequest, ValueError) as e:
             logger.exception("Error getting playlist info: %s")
             return {"success": False, "error": f"Error getting playlist info: {e}"}
+        else:
+            return result
 
     def delete_playlist(
         self,
