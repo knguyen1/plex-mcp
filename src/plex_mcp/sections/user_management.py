@@ -52,46 +52,14 @@ class UserManagementSection:
     def _register_tools(self) -> None:
         """Register all user management-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.get_users,
-            name="get_users",
-            description="Get list of all users with access to the server",
-        )
-        self.mcp.tool(
-            self.get_user_info,
-            name="get_user_info",
-            description="Get detailed information about a specific user",
-        )
-        self.mcp.tool(
-            self.get_user_permissions,
-            name="get_user_permissions",
-            description="Get permissions for a specific user",
-        )
-        self.mcp.tool(
-            self.get_user_activity,
-            name="get_user_activity",
-            description="Get recent activity for a specific user",
-        )
-        self.mcp.tool(
-            self.get_user_watch_history,
-            name="get_user_watch_history",
-            description="Get watch history for a specific user",
-        )
-        self.mcp.tool(
-            self.get_user_recommendations,
-            name="get_user_recommendations",
-            description="Get content recommendations for a specific user",
-        )
-        self.mcp.tool(
-            self.get_user_libraries,
-            name="get_user_libraries",
-            description="Get accessible libraries for a specific user",
-        )
-        self.mcp.tool(
-            self.get_user_settings,
-            name="get_user_settings",
-            description="Get user-specific settings and preferences",
-        )
+        self.mcp.tool(self.get_users)
+        self.mcp.tool(self.get_user_info)
+        self.mcp.tool(self.get_user_permissions)
+        self.mcp.tool(self.get_user_activity)
+        self.mcp.tool(self.get_user_watch_history)
+        self.mcp.tool(self.get_user_recommendations)
+        self.mcp.tool(self.get_user_libraries)
+        self.mcp.tool(self.get_user_settings)
 
     def get_users(self) -> dict[str, Any]:
         """

@@ -52,41 +52,13 @@ class PhotoLibrarySection:
     def _register_tools(self) -> None:
         """Register all photo library-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.list_photos,
-            name="list_photos",
-            description="List photos in a photo library section",
-        )
-        self.mcp.tool(
-            self.get_photo_info,
-            name="get_photo_info",
-            description="Get detailed information about a specific photo",
-        )
-        self.mcp.tool(
-            self.search_photos,
-            name="search_photos",
-            description="Search for photos by title, date, or other criteria",
-        )
-        self.mcp.tool(
-            self.get_photo_albums,
-            name="get_photo_albums",
-            description="List photo albums in a library section",
-        )
-        self.mcp.tool(
-            self.get_album_photos,
-            name="get_album_photos",
-            description="Get photos from a specific album",
-        )
-        self.mcp.tool(
-            self.get_recently_added_photos,
-            name="get_recently_added_photos",
-            description="Get recently added photos",
-        )
-        self.mcp.tool(
-            self.get_photo_timeline,
-            name="get_photo_timeline",
-            description="Get photos organized by date/timeline",
-        )
+        self.mcp.tool(self.list_photos)
+        self.mcp.tool(self.get_photo_info)
+        self.mcp.tool(self.search_photos)
+        self.mcp.tool(self.get_photo_albums)
+        self.mcp.tool(self.get_album_photos)
+        self.mcp.tool(self.get_recently_added_photos)
+        self.mcp.tool(self.get_photo_timeline)
 
     def _get_library_section(self, section_title: str) -> Any:
         """

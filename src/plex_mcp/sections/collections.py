@@ -52,46 +52,14 @@ class CollectionsSection:
     def _register_tools(self) -> None:
         """Register all collections-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.list_collections,
-            name="list_collections",
-            description="List all collections in a library section",
-        )
-        self.mcp.tool(
-            self.get_collection_info,
-            name="get_collection_info",
-            description="Get detailed information about a specific collection",
-        )
-        self.mcp.tool(
-            self.create_collection,
-            name="create_collection",
-            description="Create a new collection",
-        )
-        self.mcp.tool(
-            self.add_to_collection,
-            name="add_to_collection",
-            description="Add items to a collection",
-        )
-        self.mcp.tool(
-            self.remove_from_collection,
-            name="remove_from_collection",
-            description="Remove items from a collection",
-        )
-        self.mcp.tool(
-            self.update_collection,
-            name="update_collection",
-            description="Update collection metadata (title, summary, etc.)",
-        )
-        self.mcp.tool(
-            self.delete_collection,
-            name="delete_collection",
-            description="Delete a collection",
-        )
-        self.mcp.tool(
-            self.search_collections,
-            name="search_collections",
-            description="Search for collections by title or other criteria",
-        )
+        self.mcp.tool(self.list_collections)
+        self.mcp.tool(self.get_collection_info)
+        self.mcp.tool(self.create_collection)
+        self.mcp.tool(self.add_to_collection)
+        self.mcp.tool(self.remove_from_collection)
+        self.mcp.tool(self.update_collection)
+        self.mcp.tool(self.delete_collection)
+        self.mcp.tool(self.search_collections)
 
     def _get_library_section(self, section_title: str) -> Any:
         """

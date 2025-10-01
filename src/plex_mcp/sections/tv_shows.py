@@ -52,36 +52,12 @@ class TVShowsSection:
     def _register_tools(self) -> None:
         """Register all TV shows-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.search_tv_shows,
-            name="search_tv_shows",
-            description="Search for TV shows in the Plex library",
-        )
-        self.mcp.tool(
-            self.get_tv_shows_library,
-            name="get_tv_shows_library",
-            description="Get information about the TV shows library section",
-        )
-        self.mcp.tool(
-            self.get_show_episodes,
-            name="get_show_episodes",
-            description="Get episodes for a specific TV show",
-        )
-        self.mcp.tool(
-            self.get_episode_info,
-            name="get_episode_info",
-            description="Get detailed information about a specific episode",
-        )
-        self.mcp.tool(
-            self.search_episodes_by_show,
-            name="search_episodes_by_show",
-            description="Search for episodes within a specific TV show",
-        )
-        self.mcp.tool(
-            self.get_recently_added_shows,
-            name="get_recently_added_shows",
-            description="Get recently added TV shows",
-        )
+        self.mcp.tool(self.search_tv_shows)
+        self.mcp.tool(self.get_tv_shows_library)
+        self.mcp.tool(self.get_show_episodes)
+        self.mcp.tool(self.get_episode_info)
+        self.mcp.tool(self.search_episodes_by_show)
+        self.mcp.tool(self.get_recently_added_shows)
 
     def _get_tv_shows_section(self) -> Any:
         """
