@@ -52,41 +52,13 @@ class ClientControlSection:
     def _register_tools(self) -> None:
         """Register all client control-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.list_clients,
-            name="list_clients",
-            description="List all connected Plex clients",
-        )
-        self.mcp.tool(
-            self.get_client_info,
-            name="get_client_info",
-            description="Get detailed information about a specific client",
-        )
-        self.mcp.tool(
-            self.play_media,
-            name="play_media",
-            description="Play media on a specific client",
-        )
-        self.mcp.tool(
-            self.control_playback,
-            name="control_playback",
-            description="Control playback (play, pause, stop, seek) on a client",
-        )
-        self.mcp.tool(
-            self.set_volume,
-            name="set_volume",
-            description="Set volume on a client",
-        )
-        self.mcp.tool(
-            self.navigate_client,
-            name="navigate_client",
-            description="Navigate client interface (up, down, left, right, select, back)",
-        )
-        self.mcp.tool(
-            self.get_playback_state,
-            name="get_playback_state",
-            description="Get current playback state of a client",
-        )
+        self.mcp.tool(self.list_clients)
+        self.mcp.tool(self.get_client_info)
+        self.mcp.tool(self.play_media)
+        self.mcp.tool(self.control_playback)
+        self.mcp.tool(self.set_volume)
+        self.mcp.tool(self.navigate_client)
+        self.mcp.tool(self.get_playback_state)
 
     def list_clients(self) -> dict[str, Any]:
         """

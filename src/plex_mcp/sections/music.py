@@ -55,41 +55,13 @@ class MusicSection:
     def _register_tools(self) -> None:
         """Register all music-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.search_music_tracks,
-            name="search_music_tracks",
-            description="Search for music tracks in the Plex library",
-        )
-        self.mcp.tool(
-            self.get_music_library,
-            name="get_music_library",
-            description="Get information about the music library section",
-        )
-        self.mcp.tool(
-            self.create_music_playlist,
-            name="create_music_playlist",
-            description="Create a new music playlist with specified tracks",
-        )
-        self.mcp.tool(
-            self.get_random_tracks_by_decade,
-            name="get_random_tracks_by_decade",
-            description="Get random tracks from a specific decade",
-        )
-        self.mcp.tool(
-            self.search_tracks_by_artist,
-            name="search_tracks_by_artist",
-            description="Search for tracks by a specific artist",
-        )
-        self.mcp.tool(
-            self.get_playlist_info,
-            name="get_playlist_info",
-            description="Get information about an existing playlist",
-        )
-        self.mcp.tool(
-            self.delete_playlist,
-            name="delete_playlist",
-            description="Delete an existing playlist",
-        )
+        self.mcp.tool(self.search_music_tracks)
+        self.mcp.tool(self.get_music_library)
+        self.mcp.tool(self.create_music_playlist)
+        self.mcp.tool(self.get_random_tracks_by_decade)
+        self.mcp.tool(self.search_tracks_by_artist)
+        self.mcp.tool(self.get_playlist_info)
+        self.mcp.tool(self.delete_playlist)
 
     def _get_music_section(self) -> Any:
         """

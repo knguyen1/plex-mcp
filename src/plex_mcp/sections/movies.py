@@ -52,41 +52,13 @@ class MoviesSection:
     def _register_tools(self) -> None:
         """Register all movies-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.search_movies,
-            name="search_movies",
-            description="Search for movies in the Plex library",
-        )
-        self.mcp.tool(
-            self.get_movies_library,
-            name="get_movies_library",
-            description="Get information about the movies library section",
-        )
-        self.mcp.tool(
-            self.get_movie_info,
-            name="get_movie_info",
-            description="Get detailed information about a specific movie",
-        )
-        self.mcp.tool(
-            self.search_movies_by_genre,
-            name="search_movies_by_genre",
-            description="Search for movies by genre",
-        )
-        self.mcp.tool(
-            self.search_movies_by_year,
-            name="search_movies_by_year",
-            description="Search for movies by year or year range",
-        )
-        self.mcp.tool(
-            self.get_recently_added_movies,
-            name="get_recently_added_movies",
-            description="Get recently added movies",
-        )
-        self.mcp.tool(
-            self.get_movies_by_rating,
-            name="get_movies_by_rating",
-            description="Get movies filtered by rating",
-        )
+        self.mcp.tool(self.search_movies)
+        self.mcp.tool(self.get_movies_library)
+        self.mcp.tool(self.get_movie_info)
+        self.mcp.tool(self.search_movies_by_genre)
+        self.mcp.tool(self.search_movies_by_year)
+        self.mcp.tool(self.get_recently_added_movies)
+        self.mcp.tool(self.get_movies_by_rating)
 
     def _get_movies_section(self) -> Any:
         """

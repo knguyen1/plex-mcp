@@ -52,46 +52,14 @@ class SettingsSection:
     def _register_tools(self) -> None:
         """Register all settings-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.get_server_settings,
-            name="get_server_settings",
-            description="Get all server settings",
-        )
-        self.mcp.tool(
-            self.get_setting,
-            name="get_setting",
-            description="Get a specific server setting value",
-        )
-        self.mcp.tool(
-            self.set_setting,
-            name="set_setting",
-            description="Set a server setting value",
-        )
-        self.mcp.tool(
-            self.get_library_sections,
-            name="get_library_sections",
-            description="Get all library sections and their settings",
-        )
-        self.mcp.tool(
-            self.scan_library,
-            name="scan_library",
-            description="Scan a library section for new media",
-        )
-        self.mcp.tool(
-            self.empty_trash,
-            name="empty_trash",
-            description="Empty trash for a library section",
-        )
-        self.mcp.tool(
-            self.analyze_library,
-            name="analyze_library",
-            description="Analyze library section for metadata",
-        )
-        self.mcp.tool(
-            self.get_server_info,
-            name="get_server_info",
-            description="Get detailed server information",
-        )
+        self.mcp.tool(self.get_server_settings)
+        self.mcp.tool(self.get_setting)
+        self.mcp.tool(self.set_setting)
+        self.mcp.tool(self.get_library_sections)
+        self.mcp.tool(self.scan_library)
+        self.mcp.tool(self.empty_trash)
+        self.mcp.tool(self.analyze_library)
+        self.mcp.tool(self.get_server_info)
 
     def get_server_settings(self) -> dict[str, Any]:
         """

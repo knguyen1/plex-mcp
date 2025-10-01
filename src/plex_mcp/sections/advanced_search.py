@@ -52,46 +52,14 @@ class AdvancedSearchSection:
     def _register_tools(self) -> None:
         """Register all advanced search-related MCP tools."""
         # Register tools using the new FastMCP API
-        self.mcp.tool(
-            self.global_search,
-            name="global_search",
-            description="Search across all library sections for content",
-        )
-        self.mcp.tool(
-            self.advanced_search,
-            name="advanced_search",
-            description="Perform advanced search with filters and sorting",
-        )
-        self.mcp.tool(
-            self.search_by_year,
-            name="search_by_year",
-            description="Search for content by year or year range",
-        )
-        self.mcp.tool(
-            self.search_by_genre,
-            name="search_by_genre",
-            description="Search for content by genre",
-        )
-        self.mcp.tool(
-            self.search_by_rating,
-            name="search_by_rating",
-            description="Search for content by rating",
-        )
-        self.mcp.tool(
-            self.search_by_duration,
-            name="search_by_duration",
-            description="Search for content by duration range",
-        )
-        self.mcp.tool(
-            self.search_by_keyword,
-            name="search_by_keyword",
-            description="Search for content by keyword in title, summary, or tags",
-        )
-        self.mcp.tool(
-            self.get_search_suggestions,
-            name="get_search_suggestions",
-            description="Get search suggestions based on partial input",
-        )
+        self.mcp.tool(self.global_search)
+        self.mcp.tool(self.advanced_search)
+        self.mcp.tool(self.search_by_year)
+        self.mcp.tool(self.search_by_genre)
+        self.mcp.tool(self.search_by_rating)
+        self.mcp.tool(self.search_by_duration)
+        self.mcp.tool(self.search_by_keyword)
+        self.mcp.tool(self.get_search_suggestions)
 
     def global_search(
         self,
